@@ -50,13 +50,18 @@ const BodyVisualization: React.FC = () => {
   return (
     <Card className="p-6 relative overflow-hidden">
       <div className="flex lg:flex-row flex-col gap-6">
-        <div className="relative flex-1 flex items-center justify-center min-h-[300px]">
-          {/* Body visualization */}
-          <div className="relative w-full max-w-[250px]">
+        {/* Large internal body image */}
+        <div className="relative flex-1 flex items-center justify-center min-h-[400px] lg:min-h-[500px]">
+          <div className="relative w-full max-w-[350px] lg:max-w-[450px]">
             <img 
-              src="https://static.vecteezy.com/system/resources/previews/015/280/516/original/human-anatomy-body-model-png.png" 
-              alt="Human body model" 
-              className="w-full h-auto"
+              src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=800&h=1000" 
+              alt="Human internal body anatomy" 
+              className="w-full h-auto rounded-lg shadow-lg"
+              onError={(e) => {
+                const target = e.target as HTMLImageElement;
+                target.onerror = null;
+                target.src = "https://static.vecteezy.com/system/resources/previews/015/280/516/original/human-anatomy-body-model-png.png";
+              }}
             />
             
             {/* Active health indicator */}
@@ -83,25 +88,8 @@ const BodyVisualization: React.FC = () => {
               </div>
             </div>
 
-            {/* Health log button with human picture */}
-            <Button 
-              className="absolute bottom-0 left-0 bg-healthcare-500 hover:bg-healthcare-600 text-white rounded-md flex items-center gap-2"
-            >
-              <img 
-                src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&w=100&h=100" 
-                alt="Healthy person"
-                className="w-6 h-6 rounded-full object-cover"
-                onError={(e) => {
-                  const target = e.target as HTMLImageElement;
-                  target.onerror = null;
-                  target.src = "https://placehold.co/24x24?text=👤";
-                }}
-              />
-              Healthy Log
-            </Button>
-
             {/* Magnifier icon */}
-            <div className="absolute top-0 right-0 bg-white p-2 rounded-full shadow-md">
+            <div className="absolute top-2 right-2 bg-white p-2 rounded-full shadow-md">
               <Search size={20} className="text-gray-500" />
             </div>
           </div>
@@ -129,8 +117,9 @@ const BodyVisualization: React.FC = () => {
                   />
                   <h3 className="font-medium text-gray-800">{indicator.title}</h3>
                 </div>
-                <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
-                  <span className="text-xs sm:text-sm text-gray-500">Date: {indicator.date}</span>
+                <div className="flex flex-col lg:flex-row lg:items-center gap-1 lg:gap-2">
+                  {/* Hide date on small and medium screens, show only on large screens */}
+                  <span className="hidden lg:block text-sm text-gray-500">Date: {indicator.date}</span>
                   <span className="text-sm font-semibold text-healthcare-600">{indicator.status}%</span>
                 </div>
               </div>
