@@ -3,16 +3,27 @@ import React from 'react';
 import { Search, Bell } from 'lucide-react';
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Avatar } from "@/components/ui/avatar";
+import { useNavigate } from 'react-router-dom';
 
 const SearchBar: React.FC = () => {
+  const navigate = useNavigate();
+
+  const handleNotificationClick = () => {
+    navigate('/notifications');
+  };
+
+  const handleAddClick = () => {
+    // This could navigate to a new appointment or add patient page
+    console.log('Add button clicked');
+  };
+
   return (
     <div className="flex items-center justify-between w-full">
       <div className="relative w-full max-w-md">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={18} />
         <Input
           type="text"
-          placeholder="Search"
+          placeholder="Search patients, appointments..."
           className="pl-10 bg-gray-50 border-gray-100"
         />
       </div>
@@ -21,7 +32,8 @@ const SearchBar: React.FC = () => {
         <Button 
           variant="ghost" 
           size="icon" 
-          className="relative"
+          className="relative hover:bg-gray-100"
+          onClick={handleNotificationClick}
         >
           <Bell size={20} />
           <span className="absolute top-0 right-0 w-2 h-2 bg-red-500 rounded-full"></span>
@@ -34,6 +46,7 @@ const SearchBar: React.FC = () => {
           <Button 
             size="icon" 
             className="rounded-lg bg-secondary text-white hover:bg-secondary/90"
+            onClick={handleAddClick}
           >
             <span className="text-xl">+</span>
           </Button>

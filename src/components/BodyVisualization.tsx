@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Progress } from "@/components/ui/progress";
 import { Search, Heart } from 'lucide-react';
 
 interface HealthIndicator {
@@ -101,7 +102,7 @@ const BodyVisualization: React.FC = () => {
           {healthIndicators.map(indicator => (
             <div 
               key={indicator.id} 
-              className="space-y-1.5 cursor-pointer" 
+              className="space-y-2 cursor-pointer" 
               onClick={() => setSelectedIndicator(indicator.id)}
             >
               <div className="flex justify-between text-sm">
@@ -118,15 +119,13 @@ const BodyVisualization: React.FC = () => {
                   />
                   <h3 className="font-medium text-gray-800">{indicator.title}</h3>
                 </div>
-                <span className="text-gray-500">Date: {indicator.date}</span>
+                <div className="flex items-center gap-2">
+                  <span className="text-gray-500">Date: {indicator.date}</span>
+                  <span className="text-sm font-semibold text-healthcare-600">{indicator.status}%</span>
+                </div>
               </div>
               
-              <div className="health-status-bar">
-                <div 
-                  className={`health-status-progress ${indicator.color}`}
-                  style={{ width: `${indicator.status}%` }}
-                ></div>
-              </div>
+              <Progress value={indicator.status} className="h-2" />
             </div>
           ))}
 

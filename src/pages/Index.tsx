@@ -7,11 +7,22 @@ import AppointmentsCalendar from '@/components/AppointmentsCalendar';
 import UpcomingSchedule from '@/components/UpcomingSchedule';
 import ActivityChart from '@/components/ActivityChart';
 import { Button } from '@/components/ui/button';
-import { Menu } from 'lucide-react';
+import { Menu, ChevronDown } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Index: React.FC = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
+  const [selectedPeriod, setSelectedPeriod] = useState('This Week');
+  const navigate = useNavigate();
+
+  const periods = ['Today', 'This Week', 'This Month', 'This Quarter'];
+
+  const handlePeriodChange = (period: string) => {
+    setSelectedPeriod(period);
+    console.log('Period changed to:', period);
+    // Here you would typically filter data based on the selected period
+  };
 
   return (
     <div className="flex h-screen bg-gray-50">
@@ -62,7 +73,28 @@ const Index: React.FC = () => {
             <div className="flex items-center justify-between mb-6">
               <h1 className="text-2xl font-bold text-gray-800">Dashboard</h1>
               <div className="flex items-center gap-2">
-                <Button variant="outline" size="sm">This Week</Button>
+                <div className="relative">
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    className="flex items-center gap-2"
+                    onClick={() => {
+                      // Toggle dropdown or navigate to period selection
+                      console.log('Period selector clicked');
+                    }}
+                  >
+                    {selectedPeriod}
+                    <ChevronDown size={16} />
+                  </Button>
+                  {/* You could add a dropdown menu here */}
+                </div>
+                <Button 
+                  variant="outline" 
+                  size="sm"
+                  onClick={() => navigate('/login')}
+                >
+                  Doctor Login
+                </Button>
               </div>
             </div>
             
