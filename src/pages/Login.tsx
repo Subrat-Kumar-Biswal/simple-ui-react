@@ -24,18 +24,18 @@ const Login: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-healthcare-50 to-healthcare-100 flex items-center justify-center p-4">
-      <Card className="w-full max-w-md p-8 space-y-6">
+      <Card className="w-full max-w-md p-6 sm:p-8 space-y-6 bg-white/90 backdrop-blur-sm">
         <div className="text-center space-y-2">
           <div className="mx-auto w-16 h-16 bg-healthcare-500 rounded-full flex items-center justify-center">
             <Stethoscope className="w-8 h-8 text-white" />
           </div>
-          <h1 className="text-2xl font-bold text-gray-800">Doctor Portal</h1>
-          <p className="text-gray-600">Sign in to access your dashboard</p>
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-800">Doctor Portal</h1>
+          <p className="text-sm sm:text-base text-gray-600">Sign in to access your dashboard</p>
         </div>
 
         <form onSubmit={handleLogin} className="space-y-4">
           <div className="space-y-2">
-            <Label htmlFor="email">Email Address</Label>
+            <Label htmlFor="email" className="text-sm font-medium">Email Address</Label>
             <Input
               id="email"
               type="email"
@@ -43,11 +43,12 @@ const Login: React.FC = () => {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               required
+              className="w-full"
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password" className="text-sm font-medium">Password</Label>
             <div className="relative">
               <Input
                 id="password"
@@ -56,6 +57,7 @@ const Login: React.FC = () => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
+                className="w-full pr-10"
               />
               <Button
                 type="button"
@@ -69,7 +71,7 @@ const Login: React.FC = () => {
             </div>
           </div>
 
-          <Button type="submit" className="w-full bg-healthcare-500 hover:bg-healthcare-600">
+          <Button type="submit" className="w-full bg-healthcare-500 hover:bg-healthcare-600 text-white">
             Sign In
           </Button>
         </form>

@@ -14,12 +14,14 @@ const Index: React.FC = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
   const [selectedPeriod, setSelectedPeriod] = useState('This Week');
+  const [showPeriodDropdown, setShowPeriodDropdown] = useState(false);
   const navigate = useNavigate();
 
   const periods = ['Today', 'This Week', 'This Month', 'This Quarter'];
 
   const handlePeriodChange = (period: string) => {
     setSelectedPeriod(period);
+    setShowPeriodDropdown(false);
     console.log('Period changed to:', period);
     // Here you would typically filter data based on the selected period
   };
@@ -70,7 +72,7 @@ const Index: React.FC = () => {
 
         <main className="flex-1 overflow-y-auto p-4 md:p-6">
           <div className="max-w-7xl mx-auto">
-            <div className="flex items-center justify-between mb-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between mb-6 gap-4">
               <h1 className="text-2xl font-bold text-gray-800">Dashboard</h1>
               <div className="flex items-center gap-2">
                 <div className="relative">
@@ -78,15 +80,24 @@ const Index: React.FC = () => {
                     variant="outline" 
                     size="sm" 
                     className="flex items-center gap-2"
-                    onClick={() => {
-                      // Toggle dropdown or navigate to period selection
-                      console.log('Period selector clicked');
-                    }}
+                    onClick={() => setShowPeriodDropdown(!showPeriodDropdown)}
                   >
                     {selectedPeriod}
                     <ChevronDown size={16} />
                   </Button>
-                  {/* You could add a dropdown menu here */}
+                  {showPeriodDropdown && (
+                    <div className="absolute top-full mt-1 right-0 bg-white border border-gray-200 rounded-md shadow-lg z-10 min-w-[120px]">
+                      {periods.map(period => (
+                        <button
+                          key={period}
+                          className="block w-full text-left px-3 py-2 text-sm hover:bg-gray-100"
+                          onClick={() => handlePeriodChange(period)}
+                        >
+                          {period}
+                        </button>
+                      ))}
+                    </div>
+                  )}
                 </div>
                 <Button 
                   variant="outline" 
@@ -98,13 +109,13 @@ const Index: React.FC = () => {
               </div>
             </div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
               <BodyVisualization />
               <AppointmentsCalendar />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="md:col-span-2">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              <div className="lg:col-span-2">
                 <UpcomingSchedule />
               </div>
               <div>

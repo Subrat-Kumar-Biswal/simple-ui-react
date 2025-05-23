@@ -49,7 +49,7 @@ const BodyVisualization: React.FC = () => {
 
   return (
     <Card className="p-6 relative overflow-hidden">
-      <div className="flex md:flex-row flex-col gap-6">
+      <div className="flex lg:flex-row flex-col gap-6">
         <div className="relative flex-1 flex items-center justify-center min-h-[300px]">
           {/* Body visualization */}
           <div className="relative w-full max-w-[250px]">
@@ -83,11 +83,21 @@ const BodyVisualization: React.FC = () => {
               </div>
             </div>
 
-            {/* Health log button */}
+            {/* Health log button with human picture */}
             <Button 
-              className="absolute bottom-0 left-0 bg-healthcare-500 hover:bg-healthcare-600 text-white rounded-md"
+              className="absolute bottom-0 left-0 bg-healthcare-500 hover:bg-healthcare-600 text-white rounded-md flex items-center gap-2"
             >
-              🏥 Healthy Log
+              <img 
+                src="https://images.unsplash.com/photo-1649972904349-6e44c42644a7?auto=format&fit=crop&w=100&h=100" 
+                alt="Healthy person"
+                className="w-6 h-6 rounded-full object-cover"
+                onError={(e) => {
+                  const target = e.target as HTMLImageElement;
+                  target.onerror = null;
+                  target.src = "https://placehold.co/24x24?text=👤";
+                }}
+              />
+              Healthy Log
             </Button>
 
             {/* Magnifier icon */}
@@ -105,7 +115,7 @@ const BodyVisualization: React.FC = () => {
               className="space-y-2 cursor-pointer" 
               onClick={() => setSelectedIndicator(indicator.id)}
             >
-              <div className="flex justify-between text-sm">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2">
                 <div className="flex items-center gap-2">
                   <img 
                     src={`/icons/${indicator.id}.svg`} 
@@ -119,8 +129,8 @@ const BodyVisualization: React.FC = () => {
                   />
                   <h3 className="font-medium text-gray-800">{indicator.title}</h3>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="text-gray-500">Date: {indicator.date}</span>
+                <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
+                  <span className="text-xs sm:text-sm text-gray-500">Date: {indicator.date}</span>
                   <span className="text-sm font-semibold text-healthcare-600">{indicator.status}%</span>
                 </div>
               </div>
