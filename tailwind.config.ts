@@ -1,3 +1,4 @@
+
 import type { Config } from "tailwindcss";
 
 export default {
@@ -61,6 +62,29 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				healthcare: {
+					'50': '#e6f9f7',
+					'100': '#ccf3ef',
+					'200': '#99e8df',
+					'300': '#66dcce',
+					'400': '#33d0be',
+					'500': '#1ec4ae', // Primary teal
+					'600': '#189d8b',
+					'700': '#127668',
+					'800': '#0c4e46',
+					'900': '#062723',
+					'950': '#031311',
+				},
+				appointment: {
+					'blue': '#3843D0',
+					'light-blue': '#E9EBFB',
+					'purple': '#6248D0',
+					'light-purple': '#EEEBFB',
+				},
+				chart: {
+					'teal': '#1ec4ae',
+					'purple': '#6248D0',
 				}
 			},
 			borderRadius: {
