@@ -54,7 +54,7 @@ const BodyVisualization: React.FC = () => {
         <div className="relative flex-1 flex items-center justify-center min-h-[400px] lg:min-h-[500px]">
           <div className="relative w-full max-w-[350px] lg:max-w-[450px]">
             <img 
-              src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&w=800&h=1000" 
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTGlY3g6mjhGb78IMtF7R5-i8xPgxFqTG_pjebYr0l_gp73h0O5?auto=format&fit=crop&w=800&h=1000" 
               alt="Human internal body anatomy" 
               className="w-full h-auto rounded-lg shadow-lg"
               onError={(e) => {
